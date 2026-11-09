@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interaktív weblapok – Berni néni infóórái</title>
+  <meta name="description" content="Interaktív weblapok digitális kultúra és informatika órákhoz – Tomori Pál Általános Iskola.">
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 1px 3px rgba(15, 23, 42, .08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0f172a; --card: #1e293b; --text: #e2e8f0; --muted: #94a3b8;
+        --border: #334155; --shadow: none;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #0f172a; --card: #1e293b; --text: #e2e8f0; --muted: #94a3b8;
+      --border: #334155; --shadow: none;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.5;
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+    header {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #06b6d4 100%);
+      color: #fff;
+      padding: 48px 0 40px;
+    }
+    header .kicker {
+      margin: 0 0 6px;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .85;
+    }
+    header h1 {
+      margin: 0 0 4px;
+      font-size: clamp(26px, 4vw, 40px);
+      line-height: 1.15;
+    }
+    header .alcim {
+      margin: 0 0 24px;
+      font-size: clamp(18px, 2.5vw, 22px);
+      font-weight: 500;
+      opacity: .95;
+    }
+    .kereso {
+      width: 100%;
+      max-width: 520px;
+      padding: 12px 16px;
+      border: 0;
+      border-radius: 12px;
+      font-size: 16px;
+      color: #0f172a;
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .15);
+    }
+    .kereso:focus { outline: 3px solid #93c5fd; }
+
+    main { padding: 32px 0 56px; }
+    section.kategoria { margin-bottom: 40px; }
+    .kat-fejlec {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px 14px;
+      margin-bottom: 14px;
+    }
+    .kat-fejlec h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+      font-size: 22px;
+    }
+    .kat-fejlec h2::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--c);
+      flex: none;
+    }
+    .kat-fejlec p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .racs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 16px;
+    }
+    .kartya {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 18px;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      color: inherit;
+      text-decoration: none;
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+    .kartya::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: var(--c);
+    }
+    .kartya:hover, .kartya:focus-visible {
+      transform: translateY(-3px);
+      border-color: var(--c);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, .12);
+      outline: none;
+    }
+    .ikon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      font-size: 24px;
+      background: var(--c);
+      background-image: linear-gradient(rgba(255,255,255,.55), rgba(255,255,255,.55));
+    }
+    .kartya h3 { margin: 4px 0 0; font-size: 17px; line-height: 1.3; }
+    .kartya p { flex: 1; margin: 0; color: var(--muted); font-size: 14px; }
+    .kartya .meg { font-size: 13px; font-weight: 600; color: var(--c); }
+
+    .ures { display: none; padding: 24px 0; color: var(--muted); }
+    .ures.lathato { display: block; }
+
+    footer {
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <p class="kicker">Tomori Pál Általános Iskola · Digitális kultúra</p>
+      <h1>Interaktív weblapok</h1>
+      <p class="alcim">Berni néni infóórái</p>
+      <input id="kereso" class="kereso" type="search" placeholder="Keresés az oldalak között…" aria-label="Keresés az oldalak között">
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="tartalom"></div>
+    <p id="ures" class="ures">Nincs találat a keresésre.</p>
+  </main>
+
+  <footer>
+    <div class="wrap">Berni néni infóórái · <span id="db"></span> weblap</div>
+  </footer>
+
+  <script src="js/oldalak.js"></script>
+  <script src="js/fooldal.js"></script>
+</body>
+</html>
